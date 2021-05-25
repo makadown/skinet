@@ -445,3 +445,4 @@ $RECYCLE.BIN/
 
 ## Hidding sensitive keys
 appsettings.json
+*.db
