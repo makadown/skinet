@@ -441,3 +441,7 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+
+## Hidding sensitive keys
+appsettings.json
