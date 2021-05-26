@@ -8,9 +8,9 @@ Guided by Neil Cummings. Udemy Course here:
 
 API - Contains the controllers
 
-Core - Contains all the entities
+Core - Contains all the entities + Interfaces
 
-Infrastructure - Contains all the Data mechanism (Context, UoW, Migrations, etc..)
+Infrastructure - Contains all the Repository, DbContext and Services classes.
 
 ## Resources
 
