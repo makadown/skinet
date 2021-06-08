@@ -14,3 +14,7 @@ Infrastructure - Contains all the Repository, DbContext and Services classes.
 
 ## Resources
 
+Csv to Json
+```
+https://csvjson.com/csv2json
+```
