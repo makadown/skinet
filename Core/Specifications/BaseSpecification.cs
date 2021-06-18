@@ -10,6 +10,10 @@ namespace Core.Specifications
     /// <typeparam name="T"></typeparam>
     public class BaseSpecification<T> : ISpecification<T>
     {
+        public BaseSpecification()
+        {
+            
+        }
         public BaseSpecification(Expression<Func<T, bool>> criteria)
         {
             Criteria = criteria;
