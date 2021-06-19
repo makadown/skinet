@@ -49,6 +49,8 @@ namespace API {
             app.UseHttpsRedirection ();
 
             app.UseRouting ();
+            // THIS IS VERY IMPORTANT so you can use wwwroot to serve static files
+            app.UseStaticFiles();
 
             app.UseAuthorization ();
 
