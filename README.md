@@ -33,3 +33,8 @@ Flexbox Froggy - Juego para aprender Flexbox
 ```
 https://flexboxfroggy.com/
 ```
+
+JSON to TS
+```
+http://json2ts.com/
+```
