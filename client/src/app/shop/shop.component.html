@@ -10,11 +10,15 @@
             
             <h5 class="text-warning ml-3">Brands</h5>
             <ul class="list-group my-3">
-                <li *ngFor="let brand of brands" class="list-group-item" (click)="filterByBrand(brand)">{{brand.name}}</li>
+                <li *ngFor="let brand of brands" class="list-group-item"
+                    [value]="brand.id"
+                     [class.active]="brand.id === brandIdSelected" (click)="filterByBrand(brand)">{{brand.name}}</li>
             </ul>
             <h5 class="text-warning ml-3">Types</h5>
             <ul class="list-group my-3">
-                <li *ngFor="let pType of types" class="list-group-item" (click)="filterByType(pType)">{{pType.name}}</li>
+                <li *ngFor="let pType of types" class="list-group-item"
+                [value]="pType.id"
+                [class.active]="pType.id === typeIdSelected" (click)="filterByType(pType)">{{pType.name}}</li>
             </ul>
         </section>
         <section class="col-9">
