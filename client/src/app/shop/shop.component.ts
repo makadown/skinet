@@ -3,6 +3,7 @@ import { IBrand } from '../shared/models/brand';
 import { IPagination } from '../shared/models/pagination';
 import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/product-type';
+import { ShopParams } from '../shared/models/shopParams';
 import { ShopService } from './shop.service';
 
 @Component({
@@ -15,9 +16,9 @@ export class ShopComponent implements OnInit {
   products: IProduct[] = [];
   brands: IBrand[] = [];
   types: IType[] = [];
-  brandIdSelected = 0;
-  typeIdSelected = 0;
-  sortSelected = 'name';
+  totalCount = 0;
+
+  shopParams = new ShopParams();
   sortOptions = [
     { name: 'Alphabetical', value: 'name'},
     { name: 'Price: Low to High', value: 'priceAsc'},
@@ -34,10 +35,13 @@ export class ShopComponent implements OnInit {
 
   getProducts() {
     this._shopService
-      .getProducts(this.brandIdSelected, this.typeIdSelected, this.sortSelected)
+      .getProducts(this.shopParams)
       .subscribe(
         (response: IPagination) => {
           this.products = response.data;
+          this.shopParams.pageNumber = response.pageIndex;
+          this.shopParams.pageSize = response.pageSize;
+          this.totalCount = response.count;
         },
         (error) => {
           console.log(error);
@@ -66,16 +70,21 @@ export class ShopComponent implements OnInit {
     );
   }
   filterByBrand(brand: IBrand) {
-    this.brandIdSelected = brand.id;
+    this.shopParams.brandId = brand.id;
     this.getProducts();
   }
   filterByType(pType: IType) {
-    this.typeIdSelected = pType.id;
+    this.shopParams.typeId = pType.id;
     this.getProducts();
   }
 
   onSortSelected(sort: string) {
-    this.sortSelected = sort;
+    this.shopParams.sort = sort;
+    this.getProducts();
+  }
+
+  onPageChanged(event: any) {
+    this.shopParams.pageNumber = event.page;
     this.getProducts();
   }
 }
