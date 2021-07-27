@@ -71,10 +71,12 @@ export class ShopComponent implements OnInit {
   }
   filterByBrand(brand: IBrand) {
     this.shopParams.brandId = brand.id;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
   filterByType(pType: IType) {
     this.shopParams.typeId = pType.id;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
 
@@ -84,16 +86,20 @@ export class ShopComponent implements OnInit {
   }
 
   onPageChanged(event: any) {
-    this.shopParams.pageNumber = event;
-    this.getProducts();
+    if (this.shopParams.pageNumber !== event) {
+      this.shopParams.pageNumber = event;
+      this.getProducts();
+    }
   }
 
   onSearch() {
     this.shopParams.search = this.searchTerm.nativeElement.value;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
   onReset() {
     this.searchTerm.nativeElement.value = '';
+    this.shopParams.pageNumber = 1;
     this.shopParams = new ShopParams();
     this.getProducts();
   }
