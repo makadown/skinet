@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IBrand } from '../shared/models/brand';
 import { IPagination } from '../shared/models/pagination';
 import { IProduct } from '../shared/models/product';
@@ -12,6 +12,8 @@ import { ShopService } from './shop.service';
   styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent implements OnInit {
+  // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#definite-assignment-assertions
+  @ViewChild('search', { static: true }) searchTerm!: ElementRef;
   title = 'SkiNet';
   products: IProduct[] = [];
   brands: IBrand[] = [];
@@ -20,9 +22,9 @@ export class ShopComponent implements OnInit {
 
   shopParams = new ShopParams();
   sortOptions = [
-    { name: 'Alphabetical', value: 'name'},
-    { name: 'Price: Low to High', value: 'priceAsc'},
-    { name: 'Price: High to Low', value: 'priceDesc'}
+    { name: 'Alphabetical', value: 'name' },
+    { name: 'Price: Low to High', value: 'priceAsc' },
+    { name: 'Price: High to Low', value: 'priceDesc' },
   ];
 
   constructor(private _shopService: ShopService) {}
@@ -34,19 +36,17 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts() {
-    this._shopService
-      .getProducts(this.shopParams)
-      .subscribe(
-        (response: IPagination) => {
-          this.products = response.data;
-          this.shopParams.pageNumber = response.pageIndex;
-          this.shopParams.pageSize = response.pageSize;
-          this.totalCount = response.count;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this._shopService.getProducts(this.shopParams).subscribe(
+      (response: IPagination) => {
+        this.products = response.data;
+        this.shopParams.pageNumber = response.pageIndex;
+        this.shopParams.pageSize = response.pageSize;
+        this.totalCount = response.count;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   getBrands() {
     this._shopService.getBrands().subscribe(
@@ -85,6 +85,16 @@ export class ShopComponent implements OnInit {
 
   onPageChanged(event: any) {
     this.shopParams.pageNumber = event;
+    this.getProducts();
+  }
+
+  onSearch() {
+    this.shopParams.search = this.searchTerm.nativeElement.value;
+    this.getProducts();
+  }
+  onReset() {
+    this.searchTerm.nativeElement.value = '';
+    this.shopParams = new ShopParams();
     this.getProducts();
   }
 }
