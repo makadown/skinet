@@ -2,10 +2,10 @@
    justify-content-between p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed">
     <img src="/assets/images/logo.png" style="max-height: 50px;" alt="logo">
     <nav class="my-2 my-md-0 mr-md-3 text-uppercase" style="font-size: larger;">
-        <a class="p-2 text-dark" [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a>
-        <a class="p-2 text-dark" [routerLink]="['/shop']" routerLinkActive="router-link-active">Shop</a>
-        <a class="p-2 text-dark" [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</a>
-        <a class="p-2 text-dark" [routerLink]="['/about']" routerLinkActive="router-link-active">About</a>
+        <a class="p-2" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="p-2" [routerLink]="['/shop']" routerLinkActive="active">Shop</a>
+        <a class="p-2" [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
+        <a class="p-2" [routerLink]="['/about']" routerLinkActive="active">About</a>
     </nav>
     <div class="d-flex align-items-center">
         <a class="position-relative">
