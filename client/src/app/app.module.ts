@@ -20,7 +20,6 @@ import { AboutModule } from './about/about.module';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    ShopModule,
     HomeModule,
     AboutModule
   ],
