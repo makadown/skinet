@@ -38,3 +38,8 @@ JSON to TS
 ```
 http://json2ts.com/
 ```
+
+ngxToast
+```
+https://github.com/scttcper/ngx-toastr
+```
