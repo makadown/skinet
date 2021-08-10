@@ -8,8 +8,7 @@ import { ServerErrorComponent } from './server-error/server-error.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SectionHeaderComponent } from './section-header/section-header.component';
-
-
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -17,13 +16,18 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    SectionHeaderComponent
+    SectionHeaderComponent,
   ],
   imports: [
-    CommonModule, RouterModule, 
+    CommonModule,
+    RouterModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right', preventDuplicates: true }),
+    BreadcrumbModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
-  exports: [NavBarComponent, SectionHeaderComponent]
+  exports: [NavBarComponent, SectionHeaderComponent],
 })
-export class CoreModule { }
+export class CoreModule {}
