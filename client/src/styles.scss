@@ -6,6 +6,10 @@
     border-radius: 0;
 }
 
+.xng-breadcrumb-link {
+    color: lightgray !important;
+}
+
 label.xng-breadcrumb-trail {
     margin-bottom: 0;
     color: orange;
@@ -13,4 +17,5 @@ label.xng-breadcrumb-trail {
 
 .xng-breadcrumb-separator {
     padding: 0 0;
+    color: lightgray !important
 }
