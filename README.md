@@ -53,3 +53,8 @@ bootswatch
 ```
 https://bootswatch.com/
 ```
+
+ngx-spinner
+```
+https://www.npmjs.com/package/ngx-spinner
+```
