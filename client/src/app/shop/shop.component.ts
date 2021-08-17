@@ -13,7 +13,7 @@ import { ShopService } from './shop.service';
 })
 export class ShopComponent implements OnInit {
   // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#definite-assignment-assertions
-  @ViewChild('search', { static: true }) searchTerm!: ElementRef;
+  @ViewChild('search', { static: false }) searchTerm!: ElementRef;
   title = 'SkiNet';
   products: IProduct[] = [];
   brands: IBrand[] = [];
