@@ -58,3 +58,14 @@ ngx-spinner
 ```
 https://www.npmjs.com/package/ngx-spinner
 ```
+
+Redis.io. 
+```
+https://redis.io/
+```
+
+Nota: En este proyecto se usa docker con un archivo docker-compose.yml.
+De modo que se ejecuta en raiz de la solucion lo siguiente
+```
+docker-compose up --detach
+```
