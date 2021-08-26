@@ -28,7 +28,7 @@ namespace API
             services.AddDbContext<StoreContext>(x =>
                    x.UseSqlite(_config.GetConnectionString("Default")));
 
-            services.AddSingleton<ConnectionMultiplexer>(c =>
+            services.AddSingleton<IConnectionMultiplexer>(c =>
             {
                 var configuration = ConfigurationOptions.Parse(
                     _config.GetConnectionString("Redis"), true);
