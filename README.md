@@ -69,3 +69,8 @@ De modo que se ejecuta en raiz de la solucion lo siguiente
 ```
 docker-compose up --detach
 ```
+
+uuid package
+```
+https://www.npmjs.com/package/uuid
+```
