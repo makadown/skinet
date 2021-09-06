@@ -14,14 +14,7 @@ export class BasketService {
   private basketSource = new BehaviorSubject<IBasket | null>(null);
   basket$ = this.basketSource.asObservable();
 
-  constructor(private httpClient: HttpClient) {
-    const basketId = localStorage.getItem('basket_id');
-    if(basketId) {
-      this.getBasket(basketId).subscribe( () => {
-        console.log('initialising basket', basketId);
-      }, console.error);
-    }
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getBasket(id: string) {
     return this.httpClient.get<IBasket>(this.baseUrl + 'basket?id=' + id).pipe(
@@ -59,9 +52,13 @@ export class BasketService {
     this.setBasket(basket);
   }
 
-  private addOrUpdateItem(items: IBasketItem[], itemToAdd: IBasketItem, quantity: number): IBasketItem[] {
+  private addOrUpdateItem(
+    items: IBasketItem[],
+    itemToAdd: IBasketItem,
+    quantity: number
+  ): IBasketItem[] {
     console.log(items);
-    const index = items.findIndex(i => i.id === itemToAdd.id);
+    const index = items.findIndex((i) => i.id === itemToAdd.id);
     if (index === -1) {
       itemToAdd.quantity = quantity;
       items.push(itemToAdd);
