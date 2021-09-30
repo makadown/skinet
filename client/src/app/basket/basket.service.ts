@@ -65,7 +65,7 @@ export class BasketService {
     const foundItemIndex = basket.items.findIndex(
       (x) => x.id === item.id
     ) as number;
-    if (basket.items[foundItemIndex].quantity > 1) {
+    if (basket.items[foundItemIndex].quantity >= 1) {
       basket.items[foundItemIndex].quantity++;
       this.setBasket(basket);
     } else {
@@ -75,8 +75,8 @@ export class BasketService {
 
   removeItemFromBasket(item: IBasketItem) {
     const basket = this.getCurrentBasketValue() as IBasket;
-    if (basket.items.some(x => x.id === item.id)) {
-      basket.items = basket.items.filter(i => i.id !== item.id);
+    if (basket.items.some((x) => x.id === item.id)) {
+      basket.items = basket.items.filter((i) => i.id !== item.id);
       if (basket.items.length > 0) {
         this.setBasket(basket);
       } else {
@@ -86,13 +86,18 @@ export class BasketService {
   }
 
   deleteBasket(basket: IBasket) {
-    return this.httpClient.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe( () => {
-      this.basketSource.next(null);
-      this.basketTotalSource.next(null);
-      localStorage.removeItem('basket_id');
-    }, error => {
-      console.log(error);
-    });
+    return this.httpClient
+      .delete(this.baseUrl + 'basket?id=' + basket.id)
+      .subscribe(
+        () => {
+          this.basketSource.next(null);
+          this.basketTotalSource.next(null);
+          localStorage.removeItem('basket_id');
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   decrementItemQuantity(item: IBasketItem) {
@@ -100,8 +105,13 @@ export class BasketService {
     const foundItemIndex = basket.items.findIndex(
       (x) => x.id === item.id
     ) as number;
-    basket.items[foundItemIndex].quantity--;
-    this.setBasket(basket);
+
+    if (basket.items[foundItemIndex].quantity > 1) {
+      basket.items[foundItemIndex].quantity--;
+      this.setBasket(basket);
+    } else {
+      this.removeItemFromBasket(item);
+    }
   }
 
   private calculateTotals() {
