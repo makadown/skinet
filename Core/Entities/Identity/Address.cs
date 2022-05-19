@@ -6,6 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entities.Identity
 {
+    /// <summary>
+    /// Custom Made Class to represent the users address.
+    /// This is incorporated to the Class that extends the
+    /// Indentity User class :D 
+    /// </summary>
     public class Address
     {
         public int Id { get; set; }
