@@ -1,1 +1,41 @@
-<p>login works!</p>
+<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-label-group">
+      <input formControlName="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus="">
+      <label for="inputEmail">Email address</label>
+      <span class="text-danger" 
+           *ngIf="loginForm?.get('email')?.invalid && 
+                  loginForm?.get('email')?.touched&&
+                  loginForm?.get('email')?.errors?.pattern">
+                  Invalid email address
+      </span>
+      <span class="text-danger" *ngIf="loginForm?.get('email')?.invalid && 
+          loginForm?.get('email')?.touched && loginForm?.get('email')?.errors?.required">
+          Email address is required
+      </span>
+    </div>
+  
+    <div class="form-label-group">
+      <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
+      <label for="inputPassword">Password</label>
+      <span class="text-danger" *ngIf="loginForm?.get('password')?.invalid && 
+      loginForm?.get('password')?.touched && loginForm?.get('password')?.errors?.required">
+      Password is required
+  </span>
+    </div>
+  
+    <button class="btn btn-lg btn-primary btn-block" type="submit" 
+            [disabled]="loginForm.invalid">Sign in</button>
+    <p class="mt-5 mb-3 text-muted text-center">© 2020 - {{ today | date: 'yyyy' }}</p>
+  </form>
+
+  <!-- For testing purposes -->
+  <!-- <div class="form-status">
+      <p>Form Status: {{ loginForm.status }}</p>
+      <p>Email Status: {{ loginForm.get('email')?.status }}</p>
+      <p>Email Touched: {{ loginForm.get('email')?.touched }}</p>
+      <p>Email Dirty: {{ loginForm.get('email')?.dirty }}</p>
+      <p>Password Status: {{ loginForm.get('password')?.status }}</p>
+      <p>Password Touched: {{ loginForm.get('password')?.touched }}</p>
+      <p>Password Dirty: {{ loginForm.get('password')?.dirty }}</p>
+      <pre> {{ loginForm.value | json }} </pre>
+  </div> -->
