@@ -74,3 +74,9 @@ uuid package
 ```
 https://www.npmjs.com/package/uuid
 ```
+
+Regular Expression Library
+```
+https://regexlib.com/
+```
+
