@@ -7,17 +7,18 @@ import { PagerComponent } from './components/pager/pager.component';
 import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TextInputComponent } from './components/text-input/text-input.component';
 
 /**
  * This Custom Module will be shared amongst every module! :D
  * YEAH BABY!
  */
 @NgModule({
-  declarations: [PagingHeaderComponent, PagerComponent, OrderTotalsComponent],
+  declarations: [PagingHeaderComponent, PagerComponent, OrderTotalsComponent, TextInputComponent],
   imports: [CommonModule, PaginationModule.forRoot(), CarouselModule.forRoot(), 
      ReactiveFormsModule, BsDropdownModule.forRoot()],
   exports: [PaginationModule, PagingHeaderComponent, 
     OrderTotalsComponent, PagerComponent, CarouselModule,
-    ReactiveFormsModule, BsDropdownModule],
+    ReactiveFormsModule, BsDropdownModule, TextInputComponent],
 })
 export class SharedModule {}
