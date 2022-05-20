@@ -28,10 +28,11 @@ export class AppComponent implements OnInit {
 
   private loadCurrentUser() {
     const token = localStorage.getItem('token');
-    if (token) {
-      this.accountService.loadCurrentUser(token).subscribe(() => {
+    // we send here token even if its null because we need the service to
+    // upgrade the current user 'state' even if its null.
+    this.accountService.loadCurrentUser(token).subscribe(() => {
         console.log('getting current user baby!');
       }, console.error);
-    }
+    
   }
 }
