@@ -12,7 +12,7 @@ Core - Contains all the entities + Interfaces
 
 Infrastructure - Contains all the Repository, DbContext and Services classes.
 
-## Resources
+## Very Useful Resources applied for this project
 
 Csv to Json
 ```
@@ -80,3 +80,7 @@ Regular Expression Library
 https://regexlib.com/
 ```
 
+Disable Typescript's strict property initialization flag
+```
+https://www.angularjswiki.com/angular/property-has-no-initializer-and-is-not-definitely-assigned-in-the-constructor/
+```

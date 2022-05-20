@@ -39,10 +39,7 @@ export class AccountService {
   login(values: any) {
     return this.http.post<IUser>(this.baseUrl + 'account/login', values).pipe(
         map((user: IUser) => {
-           if (user) {
-             localStorage.setItem('token', user.token);
-             this.currentUserSource.next(user);
-           }
+           this.setTokenInStorage(user);
         })
     );
   }
@@ -50,9 +47,7 @@ export class AccountService {
   register(values: any) {
     return this.http.post<IUser>(this.baseUrl + 'account/register', values).pipe(
         map((user: IUser) => {
-           if (user) {
-             localStorage.setItem('token', user.token);
-           }
+          this.setTokenInStorage(user);
         })
     );
   }
@@ -65,5 +60,12 @@ export class AccountService {
 
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + '/account/emailexists?email=' + email);
+  }
+
+  private setTokenInStorage(user: IUser) {
+    if (user) {
+      localStorage.setItem('token', user.token);
+      this.currentUserSource.next(user);
+    }
   }
 }
