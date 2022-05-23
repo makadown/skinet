@@ -17,6 +17,7 @@ namespace API.Helpers
                 .ForMember(dest => dest.PictureUrl,
                             opt => opt.MapFrom<ProductUrlResolver>());
             CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>();
             // This is because here we are focusing in the data that is incoming to our server.
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketItemDto, BasketItem>();
