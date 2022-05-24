@@ -36,7 +36,7 @@ namespace API.Controllers
                     .CreateOrderAsync(email, orderDto.DeliveryMethodId,
                             orderDto.BasketId, address);
             
-            if (order == null) return BadRequest(new ApiResponse(400), "Problem creating order");
+            if (order == null) return BadRequest(new ApiResponse(400, "Problem creating order"));
             return Ok(order);
         }
     }
