@@ -46,5 +46,45 @@ namespace Infrastructure.Data
         {
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
+
+        /// <summary>
+        /// Begins tracking the given entity, and any other reachable entities that are 
+        /// not already being tracked, in the EntityState.Added state such that they will 
+        /// be inserted into the database when _context.SaveChanges() is called.
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Add(T entity)
+        {
+            _context.Set<T>().Add(entity);
+        }
+
+        /// <summary>
+        /// Begins tracking the given entity and entries reachable from the given entity 
+        /// using the EntityState.Modified state.
+        /// Generally, no database interaction will be performed until _context.SaveChanges() is called.
+        /// A recursive search of the navigation properties will be performed to find 
+        /// reachable entities that are not already being tracked by the context. 
+        /// All entities found will be tracked by the context.
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Update(T entity)
+        {
+            _context.Set<T>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        /// <summary>
+        /// Begins tracking the given entity in the EntityState.Deleted state such that it 
+        /// will be removed from the database when _context.SaveChanges() is called.
+        /// If the entity is already tracked in the EntityState.Added state then 
+        /// the context will stop tracking the entity 
+        /// (rather than marking it as EntityState.Deleted) since the entity was previously 
+        /// added to the context and does not exist in the database.
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Delete(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+        }
     }
 }

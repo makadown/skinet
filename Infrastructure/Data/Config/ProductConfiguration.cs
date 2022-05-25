@@ -12,7 +12,7 @@ namespace Infrastructure.Data.Config
     {
         /// <summary>
         /// Método para configurar entidad Product.
-        /// Se ejecuta automáticamente cuando se invoca el método
+        /// Se ejecuta automáticamente en Storecontext.cs cuando se invoca el método
         /// ApplyConfigurationsFromAssembly de la variable modelBuilder al
         /// hacer override de OnModelCreating.
         /// </summary>
