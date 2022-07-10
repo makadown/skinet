@@ -1,4 +1,4 @@
-<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form *ngIf="loginForm" class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
      
     <app-text-input formControlName="email" [label]="'Email Address'"></app-text-input>
     <app-text-input formControlName="password" [label]="'Password'" [type]="'password'"></app-text-input>

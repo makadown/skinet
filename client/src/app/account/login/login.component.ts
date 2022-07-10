@@ -46,7 +46,10 @@ export class LoginComponent implements OnInit {
     if (token) {
       this.accountService.loadCurrentUser(token).subscribe(() => {
         this.router.navigateByUrl(this.returnUrl);
-      }, console.error);
+      }, (err) => {
+        console.error(err);
+        this.createLoginForm();
+      });
     } else {      
       this.createLoginForm();
     }
