@@ -16,11 +16,32 @@ import { StepperComponent } from './components/stepper/stepper.component';
  * YEAH BABY!
  */
 @NgModule({
-  declarations: [PagingHeaderComponent, PagerComponent, OrderTotalsComponent, TextInputComponent, StepperComponent],
-  imports: [CommonModule, PaginationModule.forRoot(), CarouselModule.forRoot(), 
-     ReactiveFormsModule, BsDropdownModule.forRoot(), CdkStepperModule],
-  exports: [PaginationModule, PagingHeaderComponent, 
-    OrderTotalsComponent, PagerComponent, CarouselModule,
-    ReactiveFormsModule, BsDropdownModule, TextInputComponent, CdkStepperModule, StepperComponent],
+  declarations: [
+    PagingHeaderComponent,
+    PagerComponent,
+    OrderTotalsComponent,
+    TextInputComponent,
+    StepperComponent,
+  ],
+  imports: [
+    CommonModule,
+    PaginationModule.forRoot(),
+    CarouselModule.forRoot(),
+    ReactiveFormsModule,
+    BsDropdownModule.forRoot(),
+    CdkStepperModule,
+  ],
+  exports: [
+    PaginationModule,
+    PagingHeaderComponent,
+    OrderTotalsComponent,
+    PagerComponent,
+    CarouselModule,
+    ReactiveFormsModule,
+    BsDropdownModule,
+    TextInputComponent,
+    CdkStepperModule,
+    StepperComponent,
+  ],
 })
 export class SharedModule {}

@@ -5,17 +5,19 @@ import { BusyService } from '../services/busy.service';
 import { delay, finalize } from 'rxjs/operators';
 
 @Injectable()
-export class LoadingInterceptor implements HttpInterceptor {
-    constructor(private busyService: BusyService) {}
+export class JwtInterceptor implements HttpInterceptor {
     
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!req.url.includes('emailexists')) {
-            this.busyService.busy();
+
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            req = req.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
         }
-        return next.handle(req).pipe(
-            finalize( () => {
-                this.busyService.idle();
-            })
-        );
+        return next.handle(req);
     }
 }
