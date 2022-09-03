@@ -93,6 +93,17 @@ export class BasketService {
     }
   }
 
+  /**
+   * If an order is created successfully, it will also clear the basket in the backend.
+   * So we need to manually remove any remaining basket info in the front end.
+   * @param id 
+   */
+  deleteLocalBasket(id: string) {
+    this.basketSource.next(null);
+    this.basketTotalSource.next(null);
+    localStorage.removeItem('basket_id');
+  }
+
   deleteBasket(basket: IBasket) {
     return this.httpClient
       .delete(this.baseUrl + 'basket?id=' + basket.id)
