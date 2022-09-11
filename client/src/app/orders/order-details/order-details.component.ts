@@ -26,7 +26,7 @@ export class OrderDetailsComponent implements OnInit {
     this.orderService.getOrder(id).subscribe((state: IOrder) => {
       this.order = state as IOrder;
       this.bcService.set('@orderDetails', 'Order #' + this.order.id + ' - ' + this.order.status);
-    });
+    }, console.error);
   }
 
 }

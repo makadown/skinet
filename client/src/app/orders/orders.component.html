@@ -1,6 +1,6 @@
 <div class="container mt-2">
     <div *ngIf="(orders$ | async) === null">
-        <p>There are no items in your basket</p>
+        <p>There are no orders yet</p>
     </div>
     <div *ngIf="orders$ | async">
         <div class="pb-5">
@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-12 mb-1">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-hover" style="cursor: pointer;">
                                 <thead class="border-0">
                                     <tr>
                                         <th scope="col">
@@ -26,19 +26,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of (orders$ | async)">
-                                        <th scope="row">
-                                            <div class="p-2">                                                
-                                                <div class="ml-3 d-inline-block align-middle">
-                                                    <h5 class="mb-0">
-                                                        <a routerLink="{{item.id}}" class="text-white">
-                                                            #{{item.id}}
-                                                        </a>
-                                                    </h5>
-                                                </div>
-                                            </div>
+                                    <tr *ngFor="let item of (orders$ | async)" routerLink="{{item.id}}">
+                                        <th>
+                                            #{{item.id}}
                                         </th>
-                                        <td class="align-middle"><strong>{{item.orderDate | date: 'dd/MM/yyyy hh:mm a'}}</strong></td>
+                                        <td class="align-middle"><strong>
+                                            {{item.orderDate | date: 'medium'}}
+                                        </strong></td>
                                         <td class="align-middle"><strong>{{item.total | currency}}</strong></td>
                                         <td class="align-middle"><strong>{{item.status | uppercase}}</strong></td>
                                     </tr>

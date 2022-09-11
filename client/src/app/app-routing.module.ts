@@ -37,6 +37,14 @@ const routes: Routes = [
     },
   },
   {
+    path: 'orders',
+    loadChildren: () =>
+      import('./orders/orders.module').then((mod) => mod.OrdersModule),
+    data: {
+      breadcrumb: 'Orders',
+    },
+  },
+  {
     path: 'shop',
     loadChildren: () =>
       import('./shop/shop.module').then((mod) => mod.ShopModule),
