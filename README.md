@@ -84,3 +84,8 @@ Disable Typescript's strict property initialization flag
 ```
 https://www.angularjswiki.com/angular/property-has-no-initializer-and-is-not-definitely-assigned-in-the-constructor/
 ```
+
+Stripe Dev dashboard
+```
+https://dashboard.stripe.com/test/developers
+```
