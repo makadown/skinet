@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     const basketId = localStorage.getItem('basket_id');
     if (basketId) {
       this.basketService.getBasket(basketId).subscribe(() => {
-        console.log('initialising basket');
+        console.log('initialising basket...');
       }, console.error);
     }
   }
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     // we send here token even if its null because we need the service to
     // upgrade the current user 'state' even if its null.
     this.accountService.loadCurrentUser(token).subscribe(() => {
-        console.log('getting current user baby!');
+        console.log('loading current user...');
       }, console.error);
     
   }

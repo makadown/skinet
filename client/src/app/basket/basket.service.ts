@@ -27,6 +27,17 @@ export class BasketService {
 
   constructor(private httpClient: HttpClient) {}
 
+  createPaymentIntent() {
+    return this.httpClient.post<IBasket>(this.baseUrl + 'payments/' + 
+                                this.getCurrentBasketValue()!.id, {})
+            .pipe(
+              map((basket: IBasket) => {
+                this.basketSource.next(basket);
+                // console.log('Basket value: ', this.getCurrentBasketValue());
+              })
+            );
+  }
+
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
       this.shipping = deliveryMethod.price;
       const basket = this.getCurrentBasketValue() as IBasket;
@@ -59,8 +70,8 @@ export class BasketService {
   }
 
   getCurrentBasketValue() {
-    console.info('Entering getCurrentBasketValue()');
-    console.info('this.basketSource.value', this.basketSource.value);
+    /*console.info('Entering getCurrentBasketValue()');
+    console.info('this.basketSource.value', this.basketSource.value);*/
     return this.basketSource.value;
   }
 
@@ -149,7 +160,7 @@ export class BasketService {
     itemToAdd: IBasketItem,
     quantity: number
   ): IBasketItem[] {
-    console.log(items);
+    // console.log(items);
     const index = items.findIndex((i) => i.id === itemToAdd.id);
     if (index === -1) {
       itemToAdd.quantity = quantity;
@@ -161,10 +172,10 @@ export class BasketService {
   }
 
   private createBasket(): IBasket {
-    console.info('Entering createBasket()');
+    // console.info('Entering createBasket()');
     const basket = new Basket();
     localStorage.setItem('basket_id', basket.id);
-    console.info('creating basket id', basket.id);
+    // console.info('creating basket id', basket.id);
     return basket;
   }
 
