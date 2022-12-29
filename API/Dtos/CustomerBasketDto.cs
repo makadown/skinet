@@ -22,6 +22,7 @@ namespace API.Dtos
         /// <value></value>
         public string ClientSecret { get; set; }
         public string PaymentIntentId { get; set; }
-        #endregion
+        public decimal ShippingPrice { get; set; }
+        #endregion        
     }
 }
