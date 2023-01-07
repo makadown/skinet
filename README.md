@@ -89,3 +89,10 @@ Stripe Dev dashboard
 ```
 https://dashboard.stripe.com/test/developers
 ```
+
+Testing Cards:
+```
+Success:                4111111111111111
+Insufficient funds:     4000000000009995
+With 3D Secure Page:    4000002760003184
+``` 
