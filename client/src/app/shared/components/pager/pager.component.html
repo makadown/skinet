@@ -1,4 +1,5 @@
 <pagination [boundaryLinks]="true" [totalItems]="totalCount" previousText="&lsaquo;" nextText="&rsaquo;"
     (pageChanged)="onPagerChanged($event)" [itemsPerPage]="pageSize" firstText="&laquo;"
+    [ngModel]="pageNumber"
     lastText="&raquo;">
 </pagination>

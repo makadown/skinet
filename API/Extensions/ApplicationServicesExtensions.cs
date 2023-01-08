@@ -15,6 +15,10 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            #region Cache service will be shared accross all requests
+            services.AddSingleton<IResponseCacheService, ResponseCacheService>();
+            #endregion
+            
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPaymentService, PaymentService>();

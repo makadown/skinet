@@ -72,8 +72,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     this.cardCvc.addEventListener('change', this.cardHandler);
   }
 
-  onChange(event: any): void {
-    console.log(event);
+  onChange(event: any): void {    
     if (event.error) {
       this.cardErrors = event.error.message;
     } else {
