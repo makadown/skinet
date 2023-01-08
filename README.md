@@ -96,3 +96,8 @@ Success:                4111111111111111
 Insufficient funds:     4000000000009995
 With 3D Secure Page:    4000002760003184
 ``` 
+
+For testing
+```
+stripe listen -f https://localhost:5001/api/payments/webhook -e payment_intent.succeeded,payment_intent.payment_failed
+``` 

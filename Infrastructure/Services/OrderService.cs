@@ -43,7 +43,7 @@ namespace Infrastructure.Services
             var subtotal = items.Sum(i => i.Price * i.Quantity);
 
             // Check if we have an existing order by paymentIntentId
-            var spec = new OrderByPaymentIntentIdWithItemsSpecification(basket.PaymentIntentId);
+            var spec = new OrderByPaymentIntentIdSpecification(basket.PaymentIntentId);
             var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
 
             if (existingOrder != null)
