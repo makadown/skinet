@@ -1,3 +1,4 @@
+using System.IO;
 using API.Extensions;
 using API.Helpers;
 using API.Middleware;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
+using Microsoft.Extensions.FileProviders;
 
 namespace API
 {
@@ -27,10 +29,10 @@ namespace API
             services.AddControllers();
 
             services.AddDbContext<StoreContext>(x =>
-                   x.UseSqlite(_config.GetConnectionString("Default")));
+                   x.UseNpgsql(_config.GetConnectionString("Default")));
 
             services.AddDbContext<AppIdentityDbContext>( x => {
-                x.UseSqlite(_config.GetConnectionString("IdentityConnection"));
+                x.UseNpgsql(_config.GetConnectionString("IdentityConnection"));
             });
 
             services.AddSingleton<IConnectionMultiplexer>(c =>
@@ -65,6 +67,13 @@ namespace API
             app.UseRouting();
             // THIS IS VERY IMPORTANT so you can use wwwroot to serve static files
             app.UseStaticFiles();
+            // prog-config - using this to set the Content folder to be used with images folder
+            app.UseStaticFiles(new StaticFileOptions{
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Content")
+                ), RequestPath = "/content"
+            });
+
             app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
@@ -76,6 +85,7 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }

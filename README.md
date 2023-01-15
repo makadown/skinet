@@ -97,7 +97,25 @@ Insufficient funds:     4000000000009995
 With 3D Secure Page:    4000002760003184
 ``` 
 
-For testing
+For testing (https://stripe.com/docs/stripe-cli)
 ```
-stripe listen -f https://localhost:5001/api/payments/webhook -e payment_intent.succeeded,payment_intent.payment_failed
+.\stripe listen -f https://localhost:5001/api/payments/webhook -e payment_intent.succeeded,payment_intent.payment_failed
 ``` 
+
+Try a generic pass like
+```
+P4$$word
+```
+
+
+Migration for postgres
+```
+dotnet ef migrations add "PostGres initial" -p Infrastructure -s API -c StoreContext -o Data/Migrations
+dotnet ef migrations add "PostGres identity initial" -p Infrastructure -s API -c AppIdentityDbContext -o Identity/Migrations
+```
+
+
+Publish command
+```
+dotnet publish -c Release -o publish skinet.sln
+```
